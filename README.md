@@ -5,7 +5,7 @@ This is an interactive TicTacToe game that supports multiple players. It started
 ### <h2>Project Evolution</h2>
 I originally envisioned the game as a single instance (with multiple rounds) that didn’t require creating multiple game instances. In the **SINGLE-GAME** version, you'll notice **class variables** instead of instance variables.
 
-Later, I decided to allow for the creation of multiple Game objects and adapted the code accordingly in the **MULTIPLE-GAMES** version. Despite these architectural differences, the features of the game remain unchanged across both versions.
+I later decided to allow for the creation of multiple Game objects and adapted the code accordingly in the **MULTIPLE-GAMES** version. Despite these architectural differences, the features of the game remain unchanged across both versions.
 
 # Features
 - 3 Game Modes:
