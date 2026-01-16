@@ -91,32 +91,32 @@ class Computer(Player):
         self.win()
 
 
+def pick_symbol():
+    while True:
+        symbol = input(
+            f"Which symbol do you want for Human? 1 = {CROSS}, 2 = {NOUGHT}: ").strip()
+        if symbol == "1":
+            return CROSS, NOUGHT
+        if symbol == "2":
+            return NOUGHT, CROSS
+        print("Invalid entry")
+        
+        
+def who_first(game):
+    human_symbol, computer_symbol = pick_symbol()
+    while True:
+        print("\nWho should go first?")
+        print("1. Human")
+        print("2. Computer")
+        first = input("Enter 1/2: ").strip()
+        if first == "1":
+            return Human("Human", human_symbol, game), Computer("Computer", computer_symbol, game)
+        if first == "2":
+            return Computer("Computer", computer_symbol, game), Human("Human", human_symbol, game)
+        print("Invalid entry")
+
+
 def players(game):
-    def pick_symbol():
-        while True:
-            symbol = input(
-                "Which symbol do you want for Human? 1=Cross, 2=Circle: ").strip()
-            if symbol == "1":
-                return CROSS, NOUGHT
-            elif symbol == "2":
-                return NOUGHT, CROSS
-            else:
-                print("Invalid entry")
-
-    def who_first():
-        human_symbol, computer_symbol = pick_symbol()
-        while True:
-            print("\nWho should go first?")
-            print("1. Human")
-            print("2. Computer")
-            first = input("Enter 1/2: ").strip()
-            if first == "1":
-                return Human("Human", human_symbol, game), Computer("Computer", computer_symbol, game)
-            elif first == "2":
-                return Computer("Computer", computer_symbol, game), Human("Human", human_symbol, game)
-            else:
-                print("Invalid entry")
-
     while True:
         print("\nWho's playing?")
         print("1. Human vs Human ")
@@ -125,13 +125,12 @@ def players(game):
         player = input("Enter 1/2/3: ").strip()
         if player == "1":
             return Human("Player 1", CROSS, game), Human("Player 2", NOUGHT, game)
-        elif player == "2":
-            return who_first()
-        elif player == "3":
+        if player == "2":
+            return who_first(game)
+        if player == "3":
             return Computer("Computer 1", CROSS, game), Computer("Computer 2", NOUGHT, game)
-        else:
-            print("Invalid entry")
-            print()
+        print("Invalid entry")
+        print()
 
 
 def play_game(p1, p2, game):
@@ -150,8 +149,7 @@ def play_game(p1, p2, game):
             break
         p2.play()
 
-    if not game.active:
-        game.show_result(p1, p2)
+    game.show_result(p1, p2)
 
 
 def again(game):
@@ -165,16 +163,14 @@ def again(game):
                     game.rounds += 1
                     print()
                     return True
-                elif player == "n":
+                if player == "n":
                     game.rounds = 1
                     return False
-                else:
-                    print("Invalid entry")
-        elif other == "n":
+                print("Invalid entry")
+        if other == "n":
             print("See you soon")
             sys.exit()
-        else:
-            print("Invalid entry")
+        print("Invalid entry")
 
 
 def main():
@@ -190,3 +186,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
